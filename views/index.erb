@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+		<title>
+			TitleLove ♥
+		</title>
+	</head>
+	<body>
+		<section class="section">
+			<div class="container">
+				<div class="columns is-vcentered is-centered">
+					<div class="column is-9">
+						<h1 class="title">
+							TitleLove ♥
+						</h1>
+						<p class="subtitle">Enter a title, get it cased.</p>
+						<form action="/" method="post" class="box" accept-charset="utf-8">
+							<% if @error != nil %>
+								<div class="notification is-warning">
+									<%= @error %>
+								</div>
+							<% end %>
+							
+							<% if @title != nil %>
+								<div class="notification is-info is-size-4">
+									<p class="is-large">
+									<%= @title %>
+								</p>
+								</div>
+								
+							<% end %>
+					
+						<div class="field">
+								<div class="control">
+									<% if @original_title %>
+										<input type="text" class="input is-large" name="title_entry" placeholder="your title" value="<%= @original_title %>">
+									<% else %>
+										<input type="text" class="input is-large" name="title_entry" placeholder="your title">
+									<% end %>
+							</div>
+						</div>
+							<div class="field">
+								<input type="submit" class="button is-primary is-fullwidth has-text-weight-semibold" value="Titlecase it">
+							</div>
+						</form>
+						<a href="https://daringfireball.net/2008/05/title_case"><p>★ Daring Fireball title case style</p></a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
