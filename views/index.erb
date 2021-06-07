@@ -8,6 +8,17 @@
 		<title>
 			TitleLove ♥
 		</title>
+		<script type="text/javascript">
+			function copyResultText()
+			{
+				var r = document.createRange();
+				r.selectNode(document.getElementById("result-box"));
+				window.getSelection().removeAllRanges();
+				window.getSelection().addRange(r);
+				document.execCommand('copy');
+				window.getSelection().removeAllRanges();
+			}
+		</script>
 	</head>
 	<body>
 		<section class="section">
@@ -27,11 +38,11 @@
 							
 							<% if @title != nil %>
 								<div class="notification is-info is-size-4">
-									<p class="is-large">
+									<p class="is-large" id="result-box">
 									<%= @title %>
 								</p>
+								<button onclick="copyResultText()" class="button is-small is-light">Copy title</button>
 								</div>
-								
 							<% end %>
 					
 						<div class="field">
