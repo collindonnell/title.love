@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { titleCase } from "title-case"
 
 // Connects to data-controller="title-case"
-export default class extends Controller {
+export default class TitleCaseController extends Controller {
   static targets = ["input", "output"]
 
   updateOutput() {
