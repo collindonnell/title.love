@@ -1,0 +1,18 @@
+<div>
+  <h1 class="font-bold text-4xl">Create Account</h1>
+  <%= form_with model: @user, class: "border border-gray-200 rounded px-8 pt-6 pb-8 my-4" do |form| %>
+    <div class="my-4">
+      <%= form.label :email, class: "block mb-1" %>
+      <%= form.text_field :email, class: "bg-gray-100 appearance-none border-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" %>
+    </div>
+    <div class="my-4">
+      <%= form.label :password, class: "block mb-1" %>
+      <%= form.password_field :password, class: "bg-gray-100 appearance-none border-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" %>
+    </div>
+    <div class="my-4">
+      <%= form.label :password_confirmation, class: "block mb-1" %>
+      <%= form.password_field :password_confirmation, class: "bg-gray-100 appearance-none border-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" %>
+    </div>
+    <%= form.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded" %>
+  <% end %>
+</div>

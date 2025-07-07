@@ -24,6 +24,15 @@
 
   <body class="bg-white dark:bg-gray-900">
     <main class="container mx-auto max-w-xl mt-28 px-5 flex flex-col">
+      <% if flash.count %>
+        <div class="mb-4">
+          <% flash.each do |type, msg| %>
+            <div class="rounded <%= type == "notice" ? "bg-green-400" : "bg-red-400" %> px-4 py-2 text-white">
+              <%= msg %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>
