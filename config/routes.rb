@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "title_case#index"
+  root "home#show"
   resources :users, only: [:new, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
 
