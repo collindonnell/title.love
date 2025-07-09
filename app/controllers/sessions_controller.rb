@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :set_body_class
+
   def new
   end
 
@@ -16,5 +18,11 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to root_path, notice: "Logged out"
+  end
+
+  private
+
+  def set_body_class
+    @body_class = "bg-gray-100"
   end
 end

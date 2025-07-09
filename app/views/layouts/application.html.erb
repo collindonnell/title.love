@@ -22,12 +22,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="<%= @body_class %> min-h-screen h-full">
+    <%= render "shared/nav" %>
     <main class="container mx-auto max-w-xl mt-28 px-5 flex flex-col">
       <% if flash.count %>
         <div class="mb-4">
           <% flash.each do |type, msg| %>
-            <div class="rounded <%= type == "notice" ? "alert-success" : "alert-warning" %>">
+            <div role="alert" class="rounded alert <%= type == "notice" ? "alert-success" : "alert-warning" %>">
               <%= msg %>
             </div>
           <% end %>

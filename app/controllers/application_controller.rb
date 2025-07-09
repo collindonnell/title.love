@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
+  helper_method :logged_in?, :current_user
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -15,5 +15,9 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "Login to continue"
       redirect_to new_session_path
     end
+  end
+
+  def set_body_class
+    @body_class = ""
   end
 end
