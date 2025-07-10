@@ -10,9 +10,9 @@ class TitlesController < ApplicationController
   end
 
   def create
-    @title = current_user.titles.new(title_params)
+    @title = current_user.titles.new(title: params[:title])
     if @title.save
-      redirect_to titles_path, notice: "Title created successfully."
+      redirect_to user_titles_path(user_id: current_user.id), notice: "Title created successfully."
     else
       render :new
     end
@@ -21,12 +21,12 @@ class TitlesController < ApplicationController
   def destroy
     @title = current_user.titles.find(params[:id])
     @title.destroy
-    redirect_to titles_path, notice: "Title deleted."
+    redirect_to user_titles_path(user_id: current_user.id), notice: "Title deleted."
   end
 
   private
 
   def title_params
-    params.require(:title).permit(:title)
+    params.expect(:title)
   end
 end
