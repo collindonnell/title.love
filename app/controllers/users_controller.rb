@@ -26,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def set_body_class
-    @body_class = "bg-gray-100"
+    @body_class = "bg-neutral-100"
   end
 end

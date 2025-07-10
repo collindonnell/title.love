@@ -18,6 +18,15 @@ class TitlesController < ApplicationController
     end
   end
 
+  def update
+    @title = current_user.titles.find(params[:id])
+    if @title.update(title_params)
+      redirect_to user_titles_path(user_id: current_user.id), notice: "Title updated successfully."
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @title = current_user.titles.find(params[:id])
     @title.destroy

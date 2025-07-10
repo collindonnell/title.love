@@ -1,4 +1,32 @@
 <div>
-  <h1 class="font-bold text-4xl">Titles#edit</h1>
-  <p>Find me in app/views/titles/edit.html.erb</p>
+  <h1 class="font-bold text-4xl">Edit Title</h1>
+  <%= turbo_frame_tag @title do %>
+      <%= form_with model: [current_user, @title], local: false, data: { controller: "title-case" } do |f| %>
+        <div class="my-4 mx-4 space-y-4">
+          <div class="form-group">
+            <%= f.text_field :title,
+                class: "input input-md w-full",
+                maxlength: 255,
+                data: {
+                  title_case_target: "input",
+                  save_target: "input",
+                  action: "title-case#updateOutput"
+              },
+              placeholder: "Enter your title here...",
+              aria_label: "Title input",
+              autofocus: true %>
+          </div>
+          <%= f.hidden_field :title_cased, data: { title_case_target: "hidden" } %>
+        <div class="flex justify-end space-x-2 items-center">
+          <div>
+            <span data-title-case-target="output" class="font-bold text-lg"><%= @title.title_cased %></span>
+          </div>
+          <div class="ml-auto">
+            <%= link_to "Cancel", user_titles_path(current_user), class: "btn btn-secondary" %>
+            <%= f.submit "Save", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
