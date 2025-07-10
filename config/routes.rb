@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "home#show"
   resources :users, only: [:new, :create, :destroy] do
-    resources :titles, only: [:index, :create, :destroy]
+    resources :titles, only: [:index, :edit, :create, :destroy]
   end
   resource :session, only: [:new, :create, :destroy]
 
