@@ -10,7 +10,7 @@ class TitlesController < ApplicationController
   end
 
   def create
-    @title = current_user.titles.new(title: params[:title])
+    @title = current_user.titles.new(title_params)
     if @title.save
       redirect_to user_titles_path(user_id: current_user.id), notice: "Title created successfully."
     else
@@ -27,6 +27,6 @@ class TitlesController < ApplicationController
   private
 
   def title_params
-    params.expect(:title)
+    params.expect(title: [:title, :title_cased])
   end
 end

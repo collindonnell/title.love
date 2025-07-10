@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_09_201457) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_10_223753) do
   create_table "titles", force: :cascade do |t|
     t.string "title"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title_cased", null: false
     t.index ["user_id"], name: "index_titles_on_user_id"
   end
 
