@@ -1,7 +1,7 @@
 <div class="card shadow-sm rounded-box bg-base-100">
   <div class="card-body">
     <h1 class="card-title">Sign Up</h1>
-    <%= form_with url: users_path do |form| %>
+    <%= form_with model: User.new do |form| %>
       <label class="floating-label mt-4 mb-3 w-full">
         <span class="label">Email</span>
         <%= form.text_field :email, class: "input w-full", placeholder: "email" %>
