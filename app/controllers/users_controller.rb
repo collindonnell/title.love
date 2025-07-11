@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_body_class
-
   def new
     @user = User.new
   end
@@ -23,9 +21,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.expect(user: [ :email, :password, :password_confirmation ])
-  end
-
-  def set_body_class
-    @body_class = "bg-base-200"
   end
 end
