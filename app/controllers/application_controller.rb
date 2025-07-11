@@ -16,8 +16,4 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
-
-  def set_body_class
-    @body_class = "bg-base-200"
-  end
 end
