@@ -23,6 +23,6 @@ class SessionsController < ApplicationController
   private
 
   def set_body_class
-    @body_class = "bg-neutral-100"
+    @body_class = "bg-base-200"
   end
 end

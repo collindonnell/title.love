@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_body_class
-    @body_class = ""
+    @body_class = "bg-base-200"
   end
 end

@@ -1,11 +1,11 @@
 <div class="w-full max-w-3xl mx-auto px-4">
   <h1 class="font-bold text-4xl">Titles</h1>
-  
+
   <%= form_with model: [current_user, Title.new], local: false, data: { controller: "title-case clipboard save" } do |f| %>
     <div class="my-4">
-      <%= f.text_field :title, 
+      <%= f.text_field :title,
           class: "input input-lg w-full",
-          data: { 
+          data: {
             title_case_target: "input",
             clipboard_target: "input",
             save_target: "input",
@@ -28,7 +28,7 @@
     </div>
   <% end %>
 
-  <ul class="list bg-base-200 rounded-box shadow-md">
+  <ul class="list bg-base-100 rounded-box shadow-md">
     <%= render @titles %>
   </ul>
 </div>

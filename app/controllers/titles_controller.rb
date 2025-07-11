@@ -36,6 +36,6 @@ class TitlesController < ApplicationController
   private
 
   def title_params
-    params.expect(title: [:title, :title_cased])
+    params.expect(title: [ :title, :title_cased ])
   end
 end
