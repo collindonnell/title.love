@@ -9,7 +9,6 @@ export default class extends Controller {
       document.getElementById(this.targetIdValue),
       "visibility"
     )
-    console.log("Setting visibleValue to:", hasText, "Previous:", controller.visibleValue)
     controller.visibleValue = hasText
   }
 }

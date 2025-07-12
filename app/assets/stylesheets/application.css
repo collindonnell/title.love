@@ -8,3 +8,11 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ .fade-out {
+   animation: fade-out 0.25s forwards;
+ }
+
+ @keyframes fade-out {
+  to { opacity: 0; }
+}

@@ -12,25 +12,31 @@ class TitlesController < ApplicationController
   def create
     @title = current_user.titles.new(title_params)
     if @title.save
-      redirect_to user_titles_path(user_id: current_user.id), notice: "Title created successfully."
+      respond_to do |format|
+        format.html { redirect_to user_titles_path(current_user), notice: "Title created successfully." }
+        format.turbo_stream
+      end
     else
-      render :new
+      redirect_to user_titles_path(current_user)
     end
   end
 
   def update
     @title = current_user.titles.find(params[:id])
     if @title.update(title_params)
-      redirect_to user_titles_path(user_id: current_user.id), notice: "Title updated successfully."
+      redirect_to user_titles_path(current_user), notice: "Title updated successfully."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @title = current_user.titles.find(params[:id])
     @title.destroy
-    redirect_to user_titles_path(user_id: current_user.id), notice: "Title deleted."
+    respond_to do |format|
+      format.html { redirect_to user_titles_path(current_user), notice: "Title deleted." }
+      format.turbo_stream
+    end
   end
 
   private

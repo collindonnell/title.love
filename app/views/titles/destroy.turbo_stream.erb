@@ -1,0 +1,12 @@
+<turbo-stream action="remove" target="<%= dom_id(@title) %>"></turbo-stream>
+<turbo-stream action="update" target="flash-messages">
+  <template>
+    <div data-controller="animation"
+         data-animation-class-value="fade-out"
+         data-animation-duration-value="250"
+         data-animation-delay-value="2000"
+         class="alert alert-success">
+      Title deleted successfully.
+    </div>
+  </template>
+</turbo-stream>
