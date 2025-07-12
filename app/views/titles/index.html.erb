@@ -1,32 +1,37 @@
 <div class="w-full max-w-3xl mx-auto px-4">
   <h1 class="font-bold text-4xl">Titles</h1>
 
-  <%= form_with model: [current_user, Title.new], local: false, data: { controller: "title-case clipboard save" } do |f| %>
-    <div class="my-4">
-      <%= f.text_field :title,
-          class: "input input-lg w-full",
-          data: {
-            title_case_target: "input",
-            clipboard_target: "input",
-            save_target: "input",
-            action: "title-case#updateOutput clipboard#updateButtonState save#updateButtonState"
-          },
-          placeholder: "Enter your title here...",
-          aria_label: "Title input",
-          autofocus: true %>
-      <%= f.hidden_field :title_cased, data: { title_case_target: "hidden" } %>
-    </div>
-    <div class="flex items-center gap-2 mb-2">
-      <button data-action="clipboard#copy" data-clipboard-target="button" class="hover:text-neutral-400 active:text-neutral-700" style="display: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
-        </svg>
-      </button>
-      <span data-title-case-target="output" data-clipboard-target="source" class="font-bold text-2xl"></span>
-
-      <%= f.submit "Save", class: "btn btn-primary ml-auto", data: { save_target: "button" }, style: "display: none;" %>
-    </div>
-  <% end %>
+  <div data-controller="title-case clipboard input-monitor"
+     data-input-monitor-target-id-value="clipboard-block">
+    <%= form_with model: [current_user, Title.new], local: false do |f| %>
+      <div class="my-4">
+        <%= f.text_field :title,
+            id: "title-input",
+            class: "input input-lg w-full",
+            data: {
+              title_case_target: "input",
+              action: "title-case#updateOutput input-monitor#inputChanged",
+            },
+            placeholder: "Enter your title here...",
+            aria_label: "Title input",
+            autofocus: true %>
+        <%= f.hidden_field :title_cased, data: { title_case_target: "hidden" } %>
+      </div>
+      <div id="clipboard-block"
+          data-controller="visibility"
+          data-visibility-target="element"
+          data-visibility-visible-value="false"
+          class="flex items-center gap-2 mb-2 hidden">
+        <button data-action="clipboard#copy" class="hover:text-neutral-400 active:text-neutral-700" style="display: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
+          </svg>
+        </button>
+        <span data-title-case-target="output" data-clipboard-target="source" class="font-bold text-2xl"></span>
+        <%= f.submit "Save", class: "btn btn-primary ml-auto", data: { save_target: "button" }, style: "display: none;" %>
+      </div>
+    <% end %>
+  </div>
 
   <ul class="list bg-base-100 rounded-box shadow-md">
     <%= render @titles %>
