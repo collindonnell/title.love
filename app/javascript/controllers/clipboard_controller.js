@@ -1,18 +1,32 @@
 import { Controller } from "@hotwired/stimulus"
 
-export default class ClipboardController extends Controller {
-  static targets = ["input", "source", "button"]
-
-  connect() {
-    this.updateButtonState()
-  }
+export default class extends Controller {
+  static targets = ["source"]
 
   copy() {
-    navigator.clipboard.writeText(this.sourceTarget.innerText.trim())
-  }
+    const source = this.sourceTarget
+    let text = ""
 
-  updateButtonState() {
-    const isEmpty = this.inputTarget.value.trim() === ""
-    this.buttonTarget.style.display = isEmpty ? "none" : ""
+    // Determine the text to copy based on the source element type
+    if (["INPUT", "TEXTAREA"].includes(source.tagName)) {
+      text = source.value
+    } else if (source.dataset.clipboardText) {
+      // Use the clipboard-text data attribute if available
+      text = source.dataset.clipboardText
+    } else {
+      text = source.innerText
+    }
+    navigator.clipboard.writeText(text.trim()).then(() => {
+      this.dispatch("copied", {
+        detail: { text },
+        bubbles: true,
+      })
+    }).catch((error) => {
+      console.error("Failed to write to clipboard: ", error)
+      this.dispatch("copy-error", {
+        detail: { error },
+        bubbles: true,
+      })
+    })
   }
 }
