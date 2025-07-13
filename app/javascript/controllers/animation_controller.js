@@ -1,4 +1,4 @@
-import { ApplicationController } from "./application_controller"
+import ApplicationController from "controllers/application_controller"
 
 // Connects to data-controller="animation"
 export default class extends ApplicationController {

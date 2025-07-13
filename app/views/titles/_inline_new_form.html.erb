@@ -1,5 +1,5 @@
 <div data-controller="title-case clipboard input-monitor"
-      data-input-monitor-target-id-value="clipboard-block">
+      data-input-monitor-visibility-outlet="#clipboard-block">
       <%= form_with model: [current_user, title], local: false do |f| %>
         <div class="my-4">
           <%= f.text_field :title,

@@ -1,14 +1,15 @@
-import { applicationController } from "./application_controller"
+import ApplicationController from "controllers/application_controller"
 
 export default class extends ApplicationController {
-  static values = { targetId: String }
+  static outlets = ["visibility"]
 
   inputChanged(event) {
+    console.log("Input changed:", event.target.value)
     const hasText = event.target.value.trim().length > 0
-    const controller = this.application.getControllerForElementAndIdentifier(
-      document.getElementById(this.targetIdValue),
-      "visibility"
-    )
-    controller.visibleValue = hasText
+    console.log(`visibilityOutlets: ${this.visibilityOutlets.length}`)
+    this.visibilityOutlets.forEach((outlet) => {
+      outlet.visibleValue = hasText
+      console.log(`Visibility outlet updated: ${outlet.identifier} to ${hasText}`)
+    })
   }
 }
