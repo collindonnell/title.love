@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: "My First Title"
+  title_cased: "My First Title"
   user: one
 
 two:
-  title: MyString
+  title: "My Second Title"
+  title_cased: "My Second Title"
   user: two
