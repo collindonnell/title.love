@@ -1,6 +1,6 @@
-import { Controller } from "@hotwired/stimulus"
+import { applicationController } from "./application_controller"
 
-export default class extends Controller {
+export default class extends ApplicationController {
   static values = { targetId: String }
 
   inputChanged(event) {

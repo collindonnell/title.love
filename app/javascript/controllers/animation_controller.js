@@ -1,7 +1,7 @@
-import { Controller } from "@hotwired/stimulus"
+import { ApplicationController } from "./application_controller"
 
 // Connects to data-controller="animation"
-export default class extends Controller {
+export default class extends ApplicationController {
   static values = {
     class: String,
     delay: { type: Number, default: 0 },
