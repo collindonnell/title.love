@@ -1,7 +1,7 @@
-import ApplicationController from "controllers/application_controller"
+import { Controller } from "@hotwired/stimulus"
 import { titleCase } from "title-case"
 
-export default class TitleCaseController extends ApplicationController {
+export default class extends Controller {
   static targets = ["input", "output", "hidden"]
 
   updateOutput() {

@@ -1,32 +1,16 @@
-import ApplicationController from "controllers/application_controller"
+import { Controller } from "@hotwired/stimulus"
 
-export default class extends ApplicationController {
+export default class extends Controller {
   static targets = ["source"]
 
-  copy() {
-    const source = this.sourceTarget
-    let text = ""
-
-    // Determine the text to copy based on the source element type
-    if (["INPUT", "TEXTAREA"].includes(source.tagName)) {
-      text = source.value
-    } else if (source.dataset.clipboardText) {
-      // Use the clipboard-text data attribute if available
-      text = source.dataset.clipboardText
-    } else {
-      text = source.innerText
-    }
-    navigator.clipboard.writeText(text.trim()).then(() => {
-      this.dispatch("copied", {
-        detail: { text },
-        bubbles: true,
-      })
+  copy(event) {
+    event.preventDefault()
+    const text = this.sourceTarget.value || this.sourceTarget.innerHTML
+    
+    navigator.clipboard.writeText(text).then(() => {
+      this.dispatch("copy", { detail: { text } })
     }).catch((error) => {
       console.error("Failed to write to clipboard: ", error)
-      this.dispatch("copy-error", {
-        detail: { error },
-        bubbles: true,
-      })
     })
   }
 }

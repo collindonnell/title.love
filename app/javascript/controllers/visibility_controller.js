@@ -1,7 +1,7 @@
-import ApplicationController from "controllers/application_controller"
+import { Controller } from "@hotwired/stimulus"
 
-export default class extends ApplicationController {
-  static targets = ["element"]
+export default class extends Controller {
+  static targets = ["item"]
   static values = {
     visible: Boolean,
     class: { type: String, default: "hidden" }
@@ -16,7 +16,7 @@ export default class extends ApplicationController {
   }
 
   update() {
-    this.elementTargets.forEach((el) => {
+    this.itemTargets.forEach((el) => {
       el.classList.toggle(this.classValue, !this.visibleValue)
     })
   }
