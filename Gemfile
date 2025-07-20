@@ -59,6 +59,9 @@ group :development do
 
   # Live reloading of code and assets in development [https://github.com/hotwired/spark]
   gem "hotwire-spark"
+
+  # An opinionated language server for Ruby [https://github.com/Shopify/ruby-lsp]
+  gem "ruby-lsp"
 end
 
 group :test do
