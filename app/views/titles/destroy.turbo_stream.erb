@@ -1,13 +1,9 @@
 <turbo-stream action="remove" target="<%= dom_id(@title) %>"></turbo-stream>
 <turbo-stream action="update" target="flash-messages">
   <template>
-    <div class="toast toast-top toast-center mt-8"
-         data-controller="transition"
-         data-transition-vanish-class="invisible opacity-0 transition delay-150 duration-500 ease-in-out"
-         data-transition-appear-class="visible opacity-100" 
-         data-transition-delay-value="800">
+    <div class="toast toast-top toast-center mt-8" data-controller="transition">
       <div class="alert alert-info">
-        Deleted
+        <span>Deleted</span>
       </div>
     </div>
   </template>
