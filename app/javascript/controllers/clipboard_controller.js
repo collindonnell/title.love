@@ -5,8 +5,8 @@ export default class extends Controller {
 
   copy(event) {
     event.preventDefault()
-    const text = this.sourceTarget.value || this.sourceTarget.innerHTML
-    
+    const text = (this.sourceTarget.value || this.sourceTarget.innerHTML).trim()
+
     navigator.clipboard.writeText(text).then(() => {
       this.dispatch("copy", { detail: { text } })
     }).catch((error) => {
