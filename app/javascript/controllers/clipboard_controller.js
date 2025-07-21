@@ -9,6 +9,7 @@ export default class extends Controller {
 
     navigator.clipboard.writeText(text).then(() => {
       this.dispatch("copy", { detail: { text } })
+      this.dispatch("toast", { detail: { content: "Copied!" }, prefix: false })
     }).catch((error) => {
       console.error("Failed to write to clipboard: ", error)
     })

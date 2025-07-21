@@ -13,23 +13,18 @@ export default class extends Controller {
     if (!this.hasTemplateTarget) { return }
 
     let toastElement = this.templateTarget.content.cloneNode(true).firstElementChild;
-    // const toastElement = document.getElementById()
     if (!toastElement) {
-      console.log("failed cloning")
       return
-    } else {
-      console.log(toastElement)
     }
 
     this.element.appendChild(toastElement)
-    // toastElement.querySelector(".content").textContent = "hi"
+    toastElement.querySelector(".toast-content").textContent = event.detail.content
     // toastElement.innerText = content
     toastElement.classList.add(...this.defaultVanish())
     toastElement.classList.add(...this.defaultAppear())
 
     toastElement.addEventListener("transitionend", () => {
-      // remove toast element after transition
-      console.log("transition complete")
+      toastElement.remove()
     })
 
     setTimeout(() => {
@@ -38,10 +33,10 @@ export default class extends Controller {
   }
 
   defaultVanish() {
-    return ["toast", "toast-top", "toast-center", "invisible", "opacity-0", "transition", "delay-150", "duration-500", "ease-in-out"]
+    return ["toast", "toast-top", "toast-center", "invisible", "opacity-0", "scale-50", "transition", "delay-150", "duration-500", "ease-in-out"]
   }
 
   defaultAppear() {
-    return ["visible", "opacity-100"]
+    return ["visible", "opacity-100", "scale-100"]
   }
 }
