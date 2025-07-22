@@ -1,7 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
+import { useSendToasts } from "mixins/use_send_toasts"
 
 export default class extends Controller {
   static targets = ["source"]
+
+  connect() {
+    useSendToasts(this)
+  }
 
   copy(event) {
     event.preventDefault()
@@ -9,7 +14,7 @@ export default class extends Controller {
 
     navigator.clipboard.writeText(text).then(() => {
       this.dispatch("copy", { detail: { text } })
-      this.dispatch("toast", { detail: { content: "Copied!" }, prefix: false })
+      this.sendToast("Copied!")
     }).catch((error) => {
       console.error("Failed to write to clipboard: ", error)
     })

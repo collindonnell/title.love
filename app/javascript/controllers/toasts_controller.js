@@ -19,7 +19,6 @@ export default class extends Controller {
 
     this.element.appendChild(toastElement)
     toastElement.querySelector(".toast-content").textContent = event.detail.content
-    // toastElement.innerText = content
     toastElement.classList.add(...this.defaultVanish())
     toastElement.classList.add(...this.defaultAppear())
 
