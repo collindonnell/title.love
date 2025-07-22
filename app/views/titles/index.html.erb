@@ -1,11 +1,15 @@
 <div class="w-full max-w-3xl mx-auto px-4">
   <h1 class="font-bold text-4xl">Titles</h1>
 
-  <div id="inline-title-form">    
+  <div id="inline-title-form">
     <%= render "inline_new_form", title: Title.new %>
   </div>
 
-  <ul id="title-list" class="list bg-base-100 rounded-box shadow-md">
-    <%= render @titles %>
-  </ul>
+  <% if @titles.present? %>
+    <ul id="title-list" class="list bg-base-100 rounded-box shadow-md">
+      <%= render @titles %>
+    </ul>
+  <% else %>
+    <span class="text-2xl text-base-content">You haven't saved any titles yet.</span>
+  <% end %>
 </div>
