@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     user = User.create(email:, password:, password_confirmation:)
     if user.persisted?
-      session[:user_id] = user.id
+      resume_user_session
       redirect_to root_path, notice: "Created user"
     else
       redirect_to new_user_path, alert: user.errors.full_messages.join(", ")

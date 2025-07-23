@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     email, password = params.expect(:email, :password)
     user = User.find_by(email:)
     if user && user.authenticate(password)
-      session[:user_id] = user.id
+      start_new_session_for(user)
       redirect_to root_path, notice: "Logged in"
     else
       redirect_to new_session_path, alert: "Invalid email or password"

@@ -23,12 +23,12 @@ module Authentication
   end
 
   def resume_user_session
-    Current.user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    Current.user ||= User.find_by(id: cookies.signed[:user_id]) if cookies.signed[:user_id]
   end
 
   def request_authentication
     session[:return_to_after_authenticating] = request.url
-    redirect_to :new_session_path, alert: "Login to continue"
+    redirect_to new_session_path, alert: "Login to continue"
   end
 
   def after_authenticaton_url
@@ -36,12 +36,12 @@ module Authentication
   end
 
   def start_new_session_for(user)
-    session[:user_id] = user.id
     Current.user = user
+    cookies.signed.permanent[:user_id] = { value: user.id, httponly: true, same_site: :lax }
   end
 
   def terminate_session
     Current.user = nil
-    session[:user_id] = nil
+    cookies.delete(:user_id)
   end
 end
