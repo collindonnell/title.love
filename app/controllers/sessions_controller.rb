@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  allow_unauthenticated_access only: %i[ new create ]
+
   def new
   end
 
@@ -14,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    terminate_session
     redirect_to root_path, notice: "Logged out"
   end
 end

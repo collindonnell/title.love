@@ -1,7 +1,9 @@
 class HomeController < ApplicationController
+  allow_unauthenticated_access
+
   def show
-    if logged_in?
-      redirect_to user_titles_path(user_id: current_user.id)
+    if authenticated?
+      redirect_to user_titles_path(Current.user)
     end
   end
 end
