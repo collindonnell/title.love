@@ -9,10 +9,15 @@ class TitlesController < ApplicationController
 
   def create
     @title = Current.user.titles.new(title_params)
+    @titles = Title.all
     if @title.save
       respond_to do |format|
-        format.html { redirect_to user_titles_path(Current.user), notice: "Title created successfully." }
-        format.turbo_stream
+        format.html { redirect_to user_titles_path(Current.user) }
+        if @titles.count > 1
+          format.turbo_stream
+        else
+          format.turbo_stream { render turbo_stream: turbo_stream.replace("titles-list-container", partial: "titles") }
+        end
       end
     else
       redirect_to user_titles_path(Current.user)
@@ -22,7 +27,7 @@ class TitlesController < ApplicationController
   def update
     @title = Current.user.titles.find(params[:id])
     if @title.update(title_params)
-      redirect_to user_titles_path(Current.user), notice: "Title updated successfully."
+      redirect_to user_titles_path(Current.user)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -31,9 +36,14 @@ class TitlesController < ApplicationController
   def destroy
     @title = Current.user.titles.find(params[:id])
     @title.destroy
+    @titles = Title.all
     respond_to do |format|
       format.html { redirect_to user_titles_path(Current.user), notice: "Title deleted." }
-      format.turbo_stream
+      if @titles.any?
+        format.turbo_stream
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("titles-list-container", partial: "titles") }
+      end
     end
   end
 

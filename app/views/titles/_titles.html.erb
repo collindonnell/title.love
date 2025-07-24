@@ -1,0 +1,11 @@
+<div id="titles-list-container">
+  <% if @titles.present? %>
+    <ul id="title-list" class="list bg-base-100 rounded-box shadow-md">
+      <%= render @titles %>
+    </ul>
+  <% else %>
+    <div class="no-items-message">
+      <span class="text-2xl text-base-content">You haven't saved any titles yet.</span>
+    </div>
+  <% end %>
+</div>

@@ -5,11 +5,5 @@
     <%= render "inline_new_form", title: Title.new %>
   </div>
 
-  <% if @titles.present? %>
-    <ul id="title-list" class="list bg-base-100 rounded-box shadow-md">
-      <%= render @titles %>
-    </ul>
-  <% else %>
-    <span class="text-2xl text-base-content">You haven't saved any titles yet.</span>
-  <% end %>
+  <%= render "titles", titles: @titles %>
 </div>

@@ -6,14 +6,8 @@
 
 <turbo-stream action="replace" target="inline-title-form">
   <template>
+    <p><%= @titles.count %></p>
     <%= render partial: "inline_new_form", formats: [:html], locals: { title: Title.new } %>
   </template>
 </turbo-stream>
 
-<turbo-stream action="update" target="flash-messages">
-  <template>
-    <div class="alert alert-success">
-      Title created successfully.
-    </div>
-  </template>
-</turbo-stream>
